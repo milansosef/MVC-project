@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', 'PostsController@index');
+Route::get('/', 'CardsController@index');
+
+Route::get('/cards{card}', 'CardsController@show');
 
 Auth::routes();
 

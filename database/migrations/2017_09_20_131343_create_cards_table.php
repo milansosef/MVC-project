@@ -20,21 +20,10 @@ class CreateCardsTable extends Migration
             $table->string('type');
             $table->string('rarity');
             $table->integer('cost');
-            $table->integer('attack');
-            $table->integer('health');
+            $table->integer('attack')->nullable();
+            $table->integer('health')->nullable();
             $table->string('playerClass');
             $table->string('img');
-            $table->timestamps();
-        });
-
-        Schema::create('card_user', function(Blueprint $table)
-        {
-            $table->integer('card_id')->unsigned()->index();
-            $table->foreign('card_id')->references('id')->on('cards')->onDelete('cascade');
-
-            $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
             $table->timestamps();
         });
     }
@@ -47,6 +36,5 @@ class CreateCardsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('cards');
-        Schema::dropIfExists('card_user');
     }
 }

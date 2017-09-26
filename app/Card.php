@@ -15,4 +15,14 @@ class card extends Model
     {
         $this->belongsToMany('App\UserProfile');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function addComment($body)
+    {
+        $this->comments()->create(compact('body'));
+    }
 }

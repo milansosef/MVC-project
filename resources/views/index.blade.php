@@ -3,7 +3,9 @@
 @section('content')
     <div class="container">
         @foreach($cards as $card)
-            <img src="{{$card}}" alt="">
+            <a href="/cards/{{ $card->id }}">
+                <img src="{{ $card->img }}" alt="">
+            </a>
         @endforeach
     </div>
 @endsection

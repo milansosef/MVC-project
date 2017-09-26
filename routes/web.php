@@ -13,8 +13,10 @@
 
 Route::get('/', 'CardsController@index');
 
-Route::get('/cards{card}', 'CardsController@show');
+Route::get('/cards/{card}', 'CardsController@show');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/posts/{post}/comments', 'CommentsController@store');

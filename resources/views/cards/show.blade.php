@@ -33,14 +33,14 @@
 
         <div class="card">
             <div class="card-block">
-                <form method="POST" action="/posts/{{ $card->id }}/comments">
+                <form method="POST" action="/cards/{{ $card->id }}/comments">
 
                     {{ csrf_field() }}
 
                     <div class="form-group">
-                        <textarea name="body" id="" placeholder="Write a comment here" class="form-control" required></textarea>
+                        <textarea name="body" placeholder="Write a comment here" class="form-control" required></textarea>
                     </div>
-
+                    <input type="hidden" value="{{ $card->id }}" name="card_id"/>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Add comment</button>
                     </div>

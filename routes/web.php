@@ -13,10 +13,15 @@
 
 Route::get('/', 'CardsController@index');
 
+Route::get('/cards/create', 'CardsController@create');
+
+Route::post('/cards', 'CardsController@store');
+
 Route::get('/cards/{card}', 'CardsController@show');
+
+Route::post('/cards/{card}/comments', 'CommentsController@store');
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::post('/cards/{card}/comments', 'CommentsController@store');

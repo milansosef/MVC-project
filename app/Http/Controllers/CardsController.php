@@ -20,4 +20,26 @@ class CardsController extends Controller
     {
         return view('cards.show', compact('card'));
     }
+
+    public function create()
+    {
+        return view('cards.create');
+    }
+
+    public function store()
+    {
+        Card::create(request([
+            'name',
+            'cardset',
+            'type',
+            'rarity',
+            'cost',
+            'attack',
+            'health',
+            'playerclass',
+            'img'
+        ]));
+
+        return redirect('/');
+    }
 }

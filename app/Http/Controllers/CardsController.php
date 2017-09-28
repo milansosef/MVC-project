@@ -8,6 +8,11 @@ use App\Card;
 
 class CardsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
     public function index()
     {
         $cards = Card::all();
@@ -28,6 +33,19 @@ class CardsController extends Controller
 
     public function store()
     {
+        $this->validate(\request(), [
+            'name' => 'required',
+            'cardset' => 'required',
+            'type' => 'required',
+            'rarity' => 'required',
+            'cost' => 'required',
+            'attack' => 'required',
+            'health' => 'required',
+            'playerclass' => 'required',
+            'img' => 'required',
+
+        ]);
+
         Card::create(request([
             'name',
             'cardset',

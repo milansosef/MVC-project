@@ -9,12 +9,12 @@
 
                 <div class="form-group">
                     <label for="name">Name:</label>
-                    <input type="text" class="form-control" id="name" name="name">
+                    <input type="text" class="form-control" id="name" name="name" required>
                 </div>
 
                 <div class="form-group">
                     <label for="cardset">Cardset:</label>
-                    <input type="text" class="form-control" id="cardset" name="cardset">
+                    <input type="text" class="form-control" id="cardset" name="cardset" required>
                 </div>
 
                 <div class="form-group">
@@ -51,9 +51,13 @@
                     <label for="img">Img url:</label>
                     <input type="text" class="form-control" id="img" name="img">
                 </div>
-
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
             </form>
+
+            @include('layouts.errors')
+
         </div>
     </div>
 @endsection

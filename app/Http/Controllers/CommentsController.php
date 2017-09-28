@@ -9,6 +9,11 @@ use App\Comment;
 
 class CommentsController extends Controller
 {
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//    }
+
     public function store(Card $card)
     {
 //        Comment::create([
@@ -17,8 +22,12 @@ class CommentsController extends Controller
 //        ]);
 
         $this->validate(request(), ['body' => 'required|min:2']);
+
+        auth()->user()->publish(
+          new Comment(request('body'))
+        );
 //
-        $card->addComment(request('body'));
+//        $card->addComment(request('body'));
 
         return back();
     }

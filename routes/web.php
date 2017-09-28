@@ -19,6 +19,7 @@ Route::post('/cards', 'CardsController@store');
 
 Route::get('/cards/{card}', 'CardsController@show');
 
+
 Route::post('/cards/{card}/comments', 'CommentsController@store');
 
 

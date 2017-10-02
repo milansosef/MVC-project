@@ -20,7 +20,7 @@
                 @foreach($card->comments as $comment)
                     <li class="list-group-item">
                         <strong>
-                            {{ $comment->userProfile->name }} on
+                            {{ $comment->user->name }} on
                             {{ $comment->created_at->diffForHumans() }}: &nbsp;
                         </strong>
                         {{ $comment->body }}
@@ -29,7 +29,7 @@
             </ul>
 
         </div>
-
+        {{--@auth--}}
         <hr>
 
         <div class="card">
@@ -41,12 +41,13 @@
                     <div class="form-group">
                         <textarea name="body" placeholder="Write a comment here" class="form-control" required></textarea>
                     </div>
-                    <input type="hidden" value="{{ $card->id }}" name="card_id"/>
+                    {{--<input type="hidden" value="{{ $card->id }}" name="card_id"/>--}}
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Add comment</button>
                     </div>
                 </form>
             </div>
         </div>
+        {{--@endauth--}}
     </div>
 @endsection

@@ -6,9 +6,15 @@ use Illuminate\Http\Request;
 
 use App\Card;
 use App\Comment;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class CommentsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 //    public function __construct()
 //    {
 //        $this->middleware('auth');
@@ -24,7 +30,10 @@ class CommentsController extends Controller
         $this->validate(request(), ['body' => 'required|min:2']);
 
         auth()->user()->publish(
-          new Comment(request('body'))
+          new Comment([
+              'body' => request('body'),
+              'card_id' => $card->id
+          ])
         );
 //
 //        $card->addComment(request('body'));

@@ -41,10 +41,11 @@
                     <div class="form-group">
                         <textarea name="body" placeholder="Write a comment here" class="form-control" required></textarea>
                     </div>
-                    {{--<input type="hidden" value="{{ $card->id }}" name="card_id"/>--}}
+
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Add comment</button>
                     </div>
+
                 </form>
             </div>
         </div>

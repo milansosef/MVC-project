@@ -6,12 +6,12 @@ class card extends Model
 {
 
     /**
-     * Get the user profiles associated with the given card.
+     * Get the user associated with the given card.
      *
      */
-    public function userProfiles()
+    public function User()
     {
-        $this->belongsToMany('App\UserProfile');
+        return $this->belongsToMany(User::class);
     }
 
     public function comments()

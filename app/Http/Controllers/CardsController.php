@@ -43,7 +43,6 @@ class CardsController extends Controller
             'health' => 'required',
             'playerclass' => 'required',
             'img' => 'required',
-
         ]);
 
         Card::create(request([

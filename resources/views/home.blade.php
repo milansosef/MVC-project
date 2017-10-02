@@ -16,6 +16,9 @@
                 </div>
 
                 <div class="card-container">
+
+                    <p>Dust: {{ Auth::user()->dust }}</p>
+
                     @foreach($cards as $card)
                         <a href="/cards/{{ $card->id }}">
                             <img src="{{ $card->img }}" alt="">

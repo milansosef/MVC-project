@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Card;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -25,7 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $cards = Card::all();
+        $user = Auth::user();
+
+        $cards = $user->cards;
 
         return view('home', compact('cards'));
     }

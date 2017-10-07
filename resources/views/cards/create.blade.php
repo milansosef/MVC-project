@@ -19,22 +19,22 @@
 
                 <div class="form-group">
                     <label for="type">Type:</label>
-                    <input type="text" class="form-control" id="type" name="type">
+                    <input type="text" class="form-control" id="type" name="type" required>
                 </div>
 
                 <div class="form-group">
                     <label for="rarity">Rarity:</label>
-                    <input type="text" class="form-control" id="rarity" name="rarity">
+                    <input type="text" class="form-control" id="rarity" name="rarity" required>
                 </div>
 
                 <div class="form-group">
                     <label for="type">Cost:</label>
-                    <input type="text" class="form-control" id="cost" name="cost">
+                    <input type="text" class="form-control" id="cost" name="cost" required>
                 </div>
 
                 <div class="form-group">
                     <label for="attack">Attack:</label>
-                    <input type="text" class="form-control" id="attack" name="attack">
+                    <input type="text" class="form-control" id="attack" name="attack" >
                 </div>
 
                 <div class="form-group">
@@ -44,12 +44,12 @@
 
                 <div class="form-group">
                     <label for="playerclass">Player class:</label>
-                    <input type="text" class="form-control" id="playerclass" name="playerclass">
+                    <input type="text" class="form-control" id="playerclass" name="playerclass" required>
                 </div>
 
                 <div class="form-group">
                     <label for="img">Img url:</label>
-                    <input type="text" class="form-control" id="img" name="img">
+                    <input type="text" class="form-control" id="img" name="img" required>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Submit</button>

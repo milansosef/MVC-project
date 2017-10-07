@@ -42,6 +42,11 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
+    public function roles()
+    {
+        return $this->hasMany(Role::class);
+    }
+
     public function publish(Comment $comment)
     {
         $this->comments()->save($comment);

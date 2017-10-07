@@ -27,6 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+//        Lazy or eager loaded ?
         $user = Auth::user();
 
         $cards = $user->cards;

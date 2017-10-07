@@ -13,9 +13,6 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                </div>
-
-                <div class="card-container">
 
                     <p>Dust: {{ Auth::user()->dust }}</p>
 

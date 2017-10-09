@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="col-md-6">
-            <form method="POST" action="/cards">
+            <form method="POST" action="{{ route('store') }}">
 
                 {{ csrf_field() }}
 

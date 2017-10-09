@@ -29,12 +29,12 @@
             </ul>
 
         </div>
-        {{--@auth--}}
+        @auth
         <hr>
 
         <div class="card">
             <div class="card-block">
-                <form method="POST" action="/cards/{{ $card->id }}/comments">
+                <form method="POST" action="{{ route('comments', ['card' => $card->id]) }}">
 
                     {{ csrf_field() }}
 
@@ -49,6 +49,6 @@
                 </form>
             </div>
         </div>
-        {{--@endauth--}}
+        @endauth
     </div>
 @endsection

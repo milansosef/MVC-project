@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         $this->comments()->save($comment);
     }
+
+    public function attachCard($cardId)
+    {
+        $this->cards()->attach($cardId);
+    }
 }

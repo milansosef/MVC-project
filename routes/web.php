@@ -13,16 +13,19 @@
 
 Route::get('/', 'CardsController@index');
 
-Route::get('/cards/create', 'CardsController@create');
+Route::get('/cards/create', 'CardsController@create')->name('create');
 
-Route::post('/cards', 'CardsController@store');
+Route::post('/cards', 'CardsController@store')->name('store');
 
-Route::get('/cards/{card}', 'CardsController@show');
+Route::get('/cards/{card}', 'CardsController@show')->name('show');
 
 
-Route::post('/cards/{card}/comments', 'CommentsController@store');
+Route::post('/cards/{card}/comments', 'CommentsController@store')->name('comments');
 
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Which URL?
+Route::post('/cards/addtowishlist', 'CardsController@addToWishlist')->name('addtowishlist');

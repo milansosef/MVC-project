@@ -27,11 +27,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $allCards = Card::all();
+
 //        Lazy or eager loaded ?
         $user = Auth::user();
-
         $cards = $user->cards;
 
-        return view('home', compact('cards'));
+        return view('home', compact(['cards', 'allCards']));
     }
 }

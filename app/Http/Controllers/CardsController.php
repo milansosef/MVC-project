@@ -59,4 +59,18 @@ class CardsController extends Controller
 
         return redirect('/');
     }
+
+
+    public function addToWishlist(Request $request)
+    {
+        //validate request
+//        $request->validate(\request(), ['cardId' => 'required']);
+
+        $cardId = $request->input('cardId');
+
+        //Pass the card id to to the attach method
+        auth()->user()->attachCard($cardId);
+
+        return redirect('/home');
+    }
 }

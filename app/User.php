@@ -40,9 +40,10 @@ class User extends Authenticatable
 
     public function roles()
     {
-        return $this->hasMany(Role::class);
+        return $this->belongsToMany(Role::class);
     }
 
+//    Other functions
     public function publish(Comment $comment)
     {
         $this->comments()->save($comment);

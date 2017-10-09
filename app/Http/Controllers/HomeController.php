@@ -27,9 +27,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        //All cards
         $allCards = Card::all();
 
-//        Lazy or eager loaded ?
+        //TODO: Find out what Auth is/does, how is it different from a model?
+        //Only the cards from the user
         $user = Auth::user();
         $cards = $user->cards;
 

@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="container">
-        {{--TODO: Searchbar laten werken--}}
+        {{--TODO: Make searchbar work--}}
         <div class="searchbar">
-            <form method=POST"" action="">
+            <form method="POST" action="{{ route('search') }}">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="" placeholder="Search" required>
+                    <input type="text" class="form-control" name="search" placeholder="Search" required>
                 </div>
 
                 <button type="submit" class="btn btn-default">Search</button>

@@ -19,6 +19,9 @@ Route::post('/cards', 'CardsController@store')->name('store');
 
 Route::get('/cards/{card}', 'CardsController@show')->name('show');
 
+//TODO: Make searchbar work
+Route::post('')->name('search');
+
 
 Route::post('/cards/{card}/comments', 'CommentsController@store')->name('comments');
 

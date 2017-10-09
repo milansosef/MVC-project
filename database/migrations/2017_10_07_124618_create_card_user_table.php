@@ -13,6 +13,7 @@ class CreateCardUserTable extends Migration
      */
     public function up()
     {
+        //TODO: Fix multiple cards error
         Schema::create('card_user', function (Blueprint $table) {
             $table->integer('card_id');
             $table->integer('user_id');

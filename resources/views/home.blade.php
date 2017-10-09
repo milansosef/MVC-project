@@ -18,10 +18,12 @@
                         @endif
                     </div>
 
-                    {{--TODO: Dust form laten werken--}}
+                    {{--Dust--}}
                     <div>
-                        <form method=POST"" action="">
+                        <form method="POST" action="{{ route('dust') }}">
                             <div class="form-inline">
+                                {{ csrf_field() }}
+
                                 <label for="dust">Dust: {{ Auth::user()->dust }}</label>
                                 <input type="number" class="form-control" id="dust" name="dust" placeholder="Type in the new value" required>
 
@@ -30,13 +32,25 @@
                         </form>
                     </div>
 
+                    @include('layouts.errors')
+
                     {{--Wish list cards--}}
                     <div>
                         @foreach($cards as $card)
-                            <a href="{{ route('show', ['card' => $card->id]) }}">
-                                <img src="{{ $card->img }}" alt="">
-                            </a>
-                            <span> {{ $card->name }} {{ $card->cost }}</span>
+                            <div>
+                                <a href="{{ route('show', ['card' => $card->id]) }}">
+                                    <img src="{{ $card->img }}" alt="">
+                                </a>
+                                <span> {{ $card->name }} {{ $card->cost }}</span>
+
+                                <form method="POST" action="{{ route('removefromwishlist') }}">
+                                    {{csrf_field()}}
+
+                                    <input type="hidden" name="cardId" value="{{ $card->id }}">
+
+                                    <button type="submit" class="btn btn-primary">Remove from wishlist</button>
+                                </form>
+                            </div>
                         @endforeach
                     </div>
 

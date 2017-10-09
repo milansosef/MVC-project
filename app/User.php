@@ -27,11 +27,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    /**
-     * Get the cards associated with the given user.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
+//    Relations
     public function cards()
     {
         return $this->belongsToMany(Card::class);
@@ -55,5 +51,17 @@ class User extends Authenticatable
     public function attachCard($cardId)
     {
         $this->cards()->attach($cardId);
+    }
+
+    public function detachCard($cardId)
+    {
+        $this->cards()->detach($cardId);
+    }
+
+    public function updateDust($newDust)
+    {
+        $this->dust = $newDust;
+
+        $this->save();
     }
 }

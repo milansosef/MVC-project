@@ -9,7 +9,7 @@
                     <input type="text" class="form-control" name="" placeholder="Search" required>
                 </div>
 
-                <button type="submit" class="btn btn-default">Update dust</button>
+                <button type="submit" class="btn btn-default">Search</button>
             </form>
         </div>
 

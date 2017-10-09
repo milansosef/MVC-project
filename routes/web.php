@@ -27,5 +27,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Which URL?
+Route::post('/home/dust', 'HomeController@dust')->name('dust');
+
 Route::post('/cards/addtowishlist', 'CardsController@addToWishlist')->name('addtowishlist');
+
+Route::post('/cards/removefromwishlist', 'CardsController@removeFromWishlist')->name('removefromwishlist');

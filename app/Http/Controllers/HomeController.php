@@ -35,4 +35,15 @@ class HomeController extends Controller
 
         return view('home', compact(['cards', 'allCards']));
     }
+
+    public function dust(Request $request)
+    {
+        $request->validate(['dust' => 'required|integer']);
+
+        $newDust = $request->input('dust');
+
+        auth()->user()->updateDust($newDust);
+
+        return redirect('/home');
+    }
 }

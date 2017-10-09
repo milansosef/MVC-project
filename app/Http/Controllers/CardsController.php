@@ -73,4 +73,14 @@ class CardsController extends Controller
 
         return redirect('/home');
     }
+
+    public function removeFromWishlist(Request $request)
+    {
+        $cardId = $request->input('cardId');
+
+        //Pass the card id to to the detach method
+        auth()->user()->detachCard($cardId);
+
+        return redirect('/home');
+    }
 }

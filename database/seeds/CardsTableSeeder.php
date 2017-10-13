@@ -20,6 +20,7 @@ class CardsTableSeeder extends Seeder
             'attack' => '6',
             'health' => '6',
             'playerClass' => 'Paladin',
+            'craftingcost' => '1600',
             'img' => 'http://media.services.zam.com/v1/media/byName/hs/cards/enus/EX1_383.png',
         ]);
 

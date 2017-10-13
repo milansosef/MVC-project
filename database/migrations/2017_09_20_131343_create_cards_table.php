@@ -16,13 +16,14 @@ class CreateCardsTable extends Migration
         Schema::create('cards', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('cardset');
+            $table->string('cardSet');
             $table->string('type');
             $table->string('rarity');
             $table->integer('cost');
             $table->integer('attack')->nullable();
             $table->integer('health')->nullable();
             $table->string('playerClass');
+            $table->integer('craftingCost')->nullable();
             $table->string('img');
             $table->timestamps();
         });

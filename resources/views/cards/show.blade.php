@@ -49,6 +49,7 @@
                 </form>
             </div>
         </div>
+        @include('layouts.errors')
         @endauth
     </div>
 @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Card;
+use MongoDB\Driver\Query;
 
 class CardsController extends Controller
 {
@@ -24,6 +25,21 @@ class CardsController extends Controller
 
     {
         return view('cards.show', compact('card'));
+    }
+
+    public function search(Query $query)
+    {
+//        $request->validate(['keyword' => 'required']);
+
+//        $keyword = $request->input('keyword');
+
+        //TODO: make searchbar work
+//        $keyword = Input::get('keyword', '');
+//        $cards = Card::SearchByKeyword($keyword)->get();
+
+        $cards = Card::search($query)->get();
+
+        return view('index', compact('cards'));
     }
 
     public function create()
@@ -64,7 +80,7 @@ class CardsController extends Controller
     public function addToWishlist(Request $request)
     {
         //validate request
-//        $request->validate(\request(), ['cardId' => 'required']);
+        $request->validate(['cardId' => 'required']);
 
         $cardId = $request->input('cardId');
 
@@ -76,6 +92,9 @@ class CardsController extends Controller
 
     public function removeFromWishlist(Request $request)
     {
+        //validate request
+        $request->validate(['cardId' => 'required']);
+
         $cardId = $request->input('cardId');
 
         //Pass the card id to to the detach method

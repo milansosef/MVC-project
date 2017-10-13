@@ -4,19 +4,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+
             <div class="panel panel-default">
-                <div class="panel-heading">My collection</div>
-
-
+                <div class="panel-heading">Dashboard</div>
                 <div class="panel-body">
-                    {{--Success message--}}
-                    <div>
-                        @if (session('status'))
-                            <div class="alert alert-success">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-                    </div>
+                    @include('layouts.success')
 
                     {{--Dust--}}
                     <div>
@@ -33,15 +25,28 @@
                     </div>
 
                     @include('layouts.errors')
+                </div>
+            </div>
 
-                    {{--Wish list cards--}}
+            {{--Wish list cards--}}
+            <div class="panel panel-default">
+                <div class="panel-heading">Card wishlist</div>
+                <div class="panel-body">
+
                     <div>
+                        @php
+                        $dustCount = 0;
+                        @endphp
+
                         @foreach($cards as $card)
+                            @php
+                            $dustCount+= $card->craftingCost;
+                            @endphp
                             <div>
                                 <a href="{{ route('show', ['card' => $card->id]) }}">
                                     <img src="{{ $card->img }}" alt="">
                                 </a>
-                                <span> {{ $card->name }} {{ $card->cost }}</span>
+                                <p> {{ $card->name }} {{ $card->craftingCost }}</p>
 
                                 <form method="POST" action="{{ route('removefromwishlist') }}">
                                     {{csrf_field()}}
@@ -52,14 +57,18 @@
                                 </form>
                             </div>
                         @endforeach
+
+                        <p>Crafting cost: {{ $dustCount }}</p>
+
                     </div>
 
-                    <hr>
-                    
-                    {{--All cards--}}
-                    <div>
-                        <h3>All cards</h3>
-                    </div>
+                </div>
+            </div>
+
+            {{--All cards--}}
+            <div class="panel panel-default">
+                <div class="panel-heading">All cards</div>
+                <div class="panel-body">
 
                     <div>
                         @foreach($allCards as $card)
@@ -82,6 +91,7 @@
 
                 </div>
             </div>
+
         </div>
     </div>
 </div>

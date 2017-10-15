@@ -12,6 +12,9 @@ class CardsController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except(['index', 'show']);
+
+//        TODO: Error als je deze erin zet op edit pagina
+//        $this->middleware('admin')->only(['edit', 'update', 'delete']);
     }
 
     public function index()
@@ -49,16 +52,17 @@ class CardsController extends Controller
 
     public function store()
     {
+        //TODO: Zet in aparte request file
         $this->validate(\request(), [
-            'name' => 'required',
-            'cardset' => 'required',
-            'type' => 'required',
-            'rarity' => 'required',
-            'cost' => 'required',
-            'attack' => 'required',
-            'health' => 'required',
-            'playerclass' => 'required',
-            'img' => 'required',
+            'name' => 'required|string',
+            'cardset' => 'required|string',
+            'type' => 'required|string',
+            'rarity' => 'required|string',
+            'cost' => 'required|string',
+            'attack' => 'required|integer',
+            'health' => 'required|integer',
+            'playerclass' => 'required|string',
+            'img' => 'required|string',
         ]);
 
         Card::create(request([
@@ -76,27 +80,35 @@ class CardsController extends Controller
         return redirect('/');
     }
 
-
-    public function addToWishlist(Request $request)
+    public function edit(Card $card)
     {
-        //validate request
-        $request->validate(['cardId' => 'required']);
+        return view('cards.edit', compact('card'));
+    }
 
-        $cardId = $request->input('cardId');
+    public function update(Request $request, Card $card)
+    {
+//        $this->validate()
 
+        $card->update($request->all());
+
+        return back();
+    }
+
+    public function delete(Card $card)
+    {
+
+    }
+
+    public function addToWishlist(Request $request, $cardId)
+    {
         //Pass the card id to to the attach method
         auth()->user()->attachCard($cardId);
 
         return redirect('/home');
     }
 
-    public function removeFromWishlist(Request $request)
+    public function removeFromWishlist(Request $request, $cardId)
     {
-        //validate request
-        $request->validate(['cardId' => 'required']);
-
-        $cardId = $request->input('cardId');
-
         //Pass the card id to to the detach method
         auth()->user()->detachCard($cardId);
 

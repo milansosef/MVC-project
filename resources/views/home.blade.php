@@ -11,18 +11,16 @@
                     @include('layouts.success')
 
                     {{--Dust--}}
-                    <div>
-                        <form method="POST" action="{{ route('dust') }}">
-                            <div class="form-inline">
-                                {{ csrf_field() }}
+                    <form method="POST" action="{{ route('dust') }}">
+                        <div class="form-inline">
+                            {{ csrf_field() }}
 
-                                <label for="dust">Dust: {{ Auth::user()->dust }}</label>
-                                <input type="number" class="form-control" id="dust" name="dust" placeholder="Type in the new value" required>
+                            <label for="dust">Dust: {{ Auth::user()->dust }}</label>
+                            <input type="number" class="form-control" id="dust" name="dust" placeholder="Type in the new value" required>
 
-                                <button type="submit" class="btn btn-default">Update dust</button>
-                            </div>
-                        </form>
-                    </div>
+                            <button type="submit" class="btn btn-default">Update dust</button>
+                        </div>
+                    </form>
 
                     @include('layouts.errors')
                 </div>
@@ -33,34 +31,29 @@
                 <div class="panel-heading">Card wishlist</div>
                 <div class="panel-body">
 
-                    <div>
-                        @php
+                    @php
                         $dustCount = 0;
-                        @endphp
+                    @endphp
 
-                        @foreach($cards as $card)
-                            @php
+                    @foreach($cards as $card)
+                        @php
                             $dustCount+= $card->craftingCost;
-                            @endphp
-                            <div>
-                                <a href="{{ route('show', ['card' => $card->id]) }}">
-                                    <img src="{{ $card->img }}" alt="">
-                                </a>
-                                <p> {{ $card->name }} {{ $card->craftingCost }}</p>
+                        @endphp
+                        <div>
+                            <a href="{{ route('show', ['card' => $card->id]) }}">
+                                <img src="{{ $card->img }}" alt="">
+                            </a>
+                            <p> {{ $card->name }} {{ $card->craftingCost }}</p>
 
-                                <form method="POST" action="{{ route('removefromwishlist') }}">
-                                    {{csrf_field()}}
+                            <form method="POST" action="{{ route('removefromwishlist', ['card' => $card->id]) }}">
+                                {{csrf_field()}}
 
-                                    <input type="hidden" name="cardId" value="{{ $card->id }}">
+                                <button type="submit" class="btn btn-primary">Remove from wishlist</button>
+                            </form>
+                        </div>
+                    @endforeach
 
-                                    <button type="submit" class="btn btn-primary">Remove from wishlist</button>
-                                </form>
-                            </div>
-                        @endforeach
-
-                        <p>Crafting cost: {{ $dustCount }}</p>
-
-                    </div>
+                    <p>Crafting cost: {{ $dustCount }}</p>
 
                 </div>
             </div>
@@ -70,24 +63,20 @@
                 <div class="panel-heading">All cards</div>
                 <div class="panel-body">
 
-                    <div>
-                        @foreach($allCards as $card)
-                            <div>
-                                <a href="{{ route('show', ['card' => $card->id]) }}">
-                                    <img src="{{ $card->img }}" alt="">
-                                </a>
+                    @foreach($allCards as $card)
+                        <div>
+                            <a href="{{ route('show', ['card' => $card->id]) }}">
+                                <img src="{{ $card->img }}" alt="">
+                            </a>
 
-                                {{--send $card->id to wishlist function--}}
-                                <form method="POST" action="{{ route('addtowishlist') }}">
-                                    {{csrf_field()}}
+                            {{--send $card->id to wishlist function--}}
+                            <form method="POST" action="{{ route('addtowishlist', ['card' => $card->id]) }}">
+                                {{csrf_field()}}
 
-                                    <input type="hidden" name="cardId" value="{{ $card->id }}">
-
-                                    <button type="submit" class="btn btn-primary">Add to wishlist</button>
-                                </form>
-                            </div>
-                        @endforeach
-                    </div>
+                                <button type="submit" class="btn btn-primary">Add to wishlist</button>
+                            </form>
+                        </div>
+                    @endforeach
 
                 </div>
             </div>

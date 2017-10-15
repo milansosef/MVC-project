@@ -17,15 +17,15 @@ class MustBeAdmin
     public function handle($request, Closure $next)
     {
         $user = Auth::user();
-//        $userRole =;
 
         if ( Auth::check() &&  $user->is('admin') == true )
         {
             return $next($request);
         }
 
+        //TODO: Fix the 'You don't have access to this page message'
         return redirect('/');
-//        abort(404, 'Access denied!');
+//        abort(404, 'You don't have access to this page');
     }
 
 }

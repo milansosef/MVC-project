@@ -24,25 +24,26 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">All cards</div>
                     <div class="panel-body">
-                        <div>
-                            @foreach($cards as $card)
-                                <div>
-                                    <a href="{{ route('show', ['card' => $card->id]) }}">
-                                        <img src="{{ $card->img }}" alt="">
-                                    </a>
 
-                                    {{--Edit button--}}
-                                    {{--<a href="{{ route('edit', ['card' => $card->id]) }}">--}}
-                                        <button class="btn btn-primary" type="button">Edit</button>
-                                    {{--</a>--}}
+                        @foreach($cards as $card)
+                            <div>
+                                <a href="{{ route('show', ['card' => $card->id]) }}">
+                                    <img src="{{ $card->img }}" alt="">
+                                </a>
+                                {{--TODO: Active/unactive button maken--}}
 
-                                    {{--Delete button--}}
-                                    {{--<a href="{{ route('delete', ['card' => $card->id]) }}">--}}
-                                    <button class="btn btn-danger" type="button">Delete</button>
-                                    {{--</a>--}}
-                                </div>
-                            @endforeach
-                        </div>
+                                {{--Edit button--}}
+                                <a href="{{ route('edit', ['card' => $card->id]) }}">
+                                    <button class="btn btn-primary" type="button">Edit</button>
+                                </a>
+
+                                {{--Delete button--}}
+                                {{--<a href="{{ route('delete', ['card' => $card->id]) }}">--}}
+                                <button class="btn btn-danger" type="button">Delete</button>
+                                {{--</a>--}}
+                            </div>
+                        @endforeach
+
                     </div>
                 </div>
 

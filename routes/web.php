@@ -30,6 +30,12 @@ Route::get('/search', function (Request $request) {
     return App\Card::search($request->search)->get();
 })->name('search');
 
+Route::get('/cards/{card}/edit', 'CardsController@edit')->name('edit');
+
+Route::patch('/cards/{card}', 'CardsController@update')->name('update');
+
+Route::get('/cards/{card}/delete', 'CardsController@delete')->name('delete');
+
 Route::post('/cards/{card}/comments', 'CommentsController@store')->name('comments');
 
 
@@ -39,9 +45,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/home/dust', 'HomeController@dust')->name('dust');
 
-Route::post('/cards/addtowishlist', 'CardsController@addToWishlist')->name('addtowishlist');
+Route::post('/cards/{card}/addtowishlist', 'CardsController@addToWishlist')->name('addtowishlist');
 
-Route::post('/cards/removefromwishlist', 'CardsController@removeFromWishlist')->name('removefromwishlist');
+Route::post('/cards/{card}/removefromwishlist', 'CardsController@removeFromWishlist')->name('removefromwishlist');
 
 
 Route::get('/admin', 'AdminController@index')->name('admin');

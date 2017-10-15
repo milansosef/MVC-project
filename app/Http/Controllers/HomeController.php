@@ -30,10 +30,13 @@ class HomeController extends Controller
         //All cards
         $allCards = Card::all();
 
+
         //TODO: Find out what Auth is/does, how is it different from a model?
         //Only the cards from the user
         $user = Auth::user();
         $cards = $user->cards;
+
+//        dd($Cards);
 
         return view('home', compact(['cards', 'allCards']));
     }

@@ -20,7 +20,7 @@ class CardsController extends Controller
 
     public function index()
     {
-        $cards = Card::all();
+        $cards = Card::where('state', 'like', 'checked')->get();
 
         return view ('index', compact('cards'));
     }
@@ -75,6 +75,22 @@ class CardsController extends Controller
     public function delete(Card $card)
     {
         $card->delete();
+
+        return back();
+    }
+
+    public function state(Card $card)
+    {
+        if ($card->state == 'checked')
+        {
+            $newState = '';
+        }
+        else {
+            $newState = 'checked';
+        }
+
+        $card->state = $newState;
+        $card->save();
 
         return back();
     }

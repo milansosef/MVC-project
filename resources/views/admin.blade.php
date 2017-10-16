@@ -30,7 +30,23 @@
                                 <a href="{{ route('show', ['card' => $card->id]) }}">
                                     <img src="{{ $card->img }}" alt="">
                                 </a>
+
                                 {{--TODO: Active/unactive button maken--}}
+                                {{--<a href="{{ route('state', ['card' => $card->id]) }}">--}}
+                                    {{--<input type="checkbox" {{ $card->state }} data-toggle="toggle">--}}
+                                {{--</a>--}}
+
+                                <form id="form" action="{{ route('state', ['card' => $card->id]) }}" >
+                                    <input type="checkbox" {{ $card->state }} data-toggle="toggle" onclick="this.form.submit();" id="check">
+
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+
+                                {{--<script>--}}
+                                    {{--$("#check").click(function(){--}}
+                                        {{--$("#form").submit();--}}
+                                    {{--});--}}
+                                {{--</script>--}}
 
                                 {{--Edit button--}}
                                 <a href="{{ route('edit', ['card' => $card->id]) }}">

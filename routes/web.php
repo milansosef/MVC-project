@@ -16,10 +16,6 @@ use Illuminate\Http\Request;
 
 Route::get('/', 'CardsController@index');
 
-Route::get('/cards/create', 'CardsController@create')->name('create');
-
-Route::post('/cards', 'CardsController@store')->name('store');
-
 Route::get('/cards/{card}', 'CardsController@show')->name('show');
 
 //TODO: Make searchbar work
@@ -32,11 +28,19 @@ Route::get('/search', function (Request $request) {
     return App\Card::search($request->search)->get();
 })->name('search');
 
+
+Route::get('/cards/create', 'CardsController@create')->name('create');
+
+Route::post('/cards', 'CardsController@store')->name('store');
+
 Route::get('/cards/{card}/edit', 'CardsController@edit')->name('edit');
 
 Route::patch('/cards/{card}', 'CardsController@update')->name('update');
 
 Route::get('/cards/{card}/delete', 'CardsController@delete')->name('delete');
+
+Route::get('/cards/{card}/state', 'CardsController@state')->name('state');
+
 
 Route::post('/cards/{card}/comments', 'CommentsController@store')->name('comments');
 

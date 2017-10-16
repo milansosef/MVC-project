@@ -25,6 +25,7 @@ class CreateCardsTable extends Migration
             $table->string('playerClass');
             $table->integer('craftingCost')->nullable();
             $table->string('img');
+            $table->string('state')->default('checked');
             $table->timestamps();
         });
     }

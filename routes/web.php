@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 |
 */
 
+//TODO: Structure the routes
+
 Route::get('/', 'CardsController@index');
 
 Route::get('/cards/create', 'CardsController@create')->name('create');

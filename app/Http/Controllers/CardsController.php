@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCard;
 use Illuminate\Http\Request;
 
 use App\Card;
@@ -50,34 +51,12 @@ class CardsController extends Controller
         return view('cards.create');
     }
 
-    public function store()
+    public function store(StoreCard $request)
     {
-        //TODO: Zet in aparte request file
-        $this->validate(\request(), [
-            'name' => 'required|string',
-            'cardset' => 'required|string',
-            'type' => 'required|string',
-            'rarity' => 'required|string',
-            'cost' => 'required|string',
-            'attack' => 'required|integer',
-            'health' => 'required|integer',
-            'playerclass' => 'required|string',
-            'img' => 'required|string',
-        ]);
+        //validated gives the validated data from the request
+        Card::create($request->validated());
 
-        Card::create(request([
-            'name',
-            'cardset',
-            'type',
-            'rarity',
-            'cost',
-            'attack',
-            'health',
-            'playerclass',
-            'img'
-        ]));
-
-        return redirect('/');
+        return redirect('/admin');
     }
 
     public function edit(Card $card)
@@ -85,18 +64,19 @@ class CardsController extends Controller
         return view('cards.edit', compact('card'));
     }
 
-    public function update(Request $request, Card $card)
+    public function update(StoreCard $request, Card $card)
     {
-//        $this->validate()
-
-        $card->update($request->all());
+        //validated gives the validated data from the request
+        $card->update($request->validated());
 
         return back();
     }
 
     public function delete(Card $card)
     {
+        $card->delete();
 
+        return back();
     }
 
     public function addToWishlist(Request $request, $cardId)

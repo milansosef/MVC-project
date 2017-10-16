@@ -39,7 +39,7 @@
                     {{ csrf_field() }}
 
                     <div class="form-group">
-                        <textarea name="body" placeholder="Write a comment here" class="form-control" required></textarea>
+                        <textarea name="body" placeholder="Write a comment here" class="form-control" required>{{ old('body') }}</textarea>
                     </div>
 
                     <div class="form-group">

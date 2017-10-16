@@ -38,9 +38,9 @@
                                 </a>
 
                                 {{--Delete button--}}
-                                {{--<a href="{{ route('delete', ['card' => $card->id]) }}">--}}
-                                <button class="btn btn-danger" type="button">Delete</button>
-                                {{--</a>--}}
+                                <a href="{{ route('delete', ['card' => $card->id]) }}">
+                                    <button class="btn btn-danger" type="button">Delete</button>
+                                </a>
                             </div>
                         @endforeach
 

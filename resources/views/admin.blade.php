@@ -46,16 +46,10 @@
                                 @endphp
 
                                 <form id="form" action="{{ route('state', ['card' => $card->id]) }}" >
-                                    <input type="checkbox" {{ $toggle }} data-toggle="toggle" id="check">
+                                    <input type="checkbox" {{ $toggle }} data-toggle="toggle" id="toggle-event">
 
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    {{--<button type="submit" class="btn btn-primary">Submit</button>--}}
                                 </form>
-
-                                {{--<script>--}}
-                                    {{--$("#check").click(function(){--}}
-                                        {{--$("#form").submit();--}}
-                                    {{--});--}}
-                                {{--</script>--}}
 
                                 {{--Edit button--}}
                                 <a href="{{ route('edit', ['card' => $card->id]) }}">

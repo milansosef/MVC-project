@@ -9851,7 +9851,14 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_instantsearch__["a" /* default */]);
 Vue.component('example', __webpack_require__(368));
 
 var app = new Vue({
-  el: '#app'
+    el: '#app'
+});
+
+$(function () {
+    $('#toggle-event').change(function () {
+        // $('#console-event').html('Toggle: ' + $(this).prop('checked'))
+        $("#form").submit();
+    });
 });
 
 /***/ }),

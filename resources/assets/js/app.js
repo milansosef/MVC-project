@@ -22,3 +22,12 @@ Vue.component('example', require('./components/Example.vue'));
 const app = new Vue({
     el: '#app'
 });
+
+
+$(function() {
+    $('#toggle-event').change(function() {
+        // $('#console-event').html('Toggle: ' + $(this).prop('checked'))
+        $("#form").submit()
+    })
+})
+

@@ -12,15 +12,15 @@ class CardsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show']);
-
-//        TODO: Error als je deze erin zet op edit pagina
-//        $this->middleware('admin')->only(['edit', 'update', 'delete']);
+//        $this->middleware('auth')->except(['index', 'show']);
+//
+//        $this->middleware('admin')->only(['create', 'store', 'edit', 'update', 'delete']);
     }
 
     public function index()
     {
-        $cards = Card::where('state', 'like', 'checked')->get();
+        //TODO: Checked doesn't work for instant search bar
+        $cards = Card::where('state', 'like', 1)->get();
 
         return view ('index', compact('cards'));
     }
@@ -31,17 +31,19 @@ class CardsController extends Controller
         return view('cards.show', compact('card'));
     }
 
-    public function search(Query $query)
+    public function search(Request $request)
     {
-//        $request->validate(['keyword' => 'required']);
+        $request->validate(['query' => 'string']);
 
-//        $keyword = $request->input('keyword');
+        $keyword = $request->input('query');
 
-        //TODO: make searchbar work
+        //TODO: make searchbar work with checked
 //        $keyword = Input::get('keyword', '');
 //        $cards = Card::SearchByKeyword($keyword)->get();
 
-        $cards = Card::search($query)->get();
+        $cards = Card::search($keyword)
+            ->where('state', 1)
+            ->get();
 
         return view('index', compact('cards'));
     }
@@ -81,12 +83,12 @@ class CardsController extends Controller
 
     public function state(Card $card)
     {
-        if ($card->state == 'checked')
+        if ($card->state == 1)
         {
-            $newState = '';
+            $newState = 0;
         }
         else {
-            $newState = 'checked';
+            $newState = 1;
         }
 
         $card->state = $newState;

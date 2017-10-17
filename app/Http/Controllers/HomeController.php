@@ -17,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+//        $this->middleware('auth');
     }
 
     /**
@@ -27,13 +27,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $allCards = Card::where('state', 'like', 'checked')->get();
+        $allCards = Card::where('state', 'like', 1)->get();
 
 
         //TODO: Find out what Auth is/does, how is it different from a model?
         //Only the cards from the user
         $user = Auth::user();
-        $cards = $user->cards->where('state', 'like', 'checked');
+        $cards = $user->cards->where('state', 'like', 1);
 
 //        dd($Cards);
 

@@ -31,13 +31,22 @@
                                     <img src="{{ $card->img }}" alt="">
                                 </a>
 
-                                {{--TODO: Active/unactive button maken--}}
+                                {{--TODO: Submit the form without a submit button--}}
                                 {{--<a href="{{ route('state', ['card' => $card->id]) }}">--}}
                                     {{--<input type="checkbox" {{ $card->state }} data-toggle="toggle">--}}
                                 {{--</a>--}}
 
+                                @php
+                                    if($card->state == 1){
+                                        $toggle = 'checked';
+                                    }
+                                    else{
+                                        $toggle = '';
+                                    }
+                                @endphp
+
                                 <form id="form" action="{{ route('state', ['card' => $card->id]) }}" >
-                                    <input type="checkbox" {{ $card->state }} data-toggle="toggle" onclick="this.form.submit();" id="check">
+                                    <input type="checkbox" {{ $toggle }} data-toggle="toggle" id="check">
 
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>

@@ -23,9 +23,9 @@ class MustBeAdmin
             return $next($request);
         }
 
-        //TODO: Fix the 'You don't have access to this page message'
-        return redirect('/');
-//        abort(404, 'You don't have access to this page');
+        //TODO: Make the 'You don't have access to this page' message look good
+//        return redirect('/');
+        abort(403, "You don't have access to this page");
     }
 
 }

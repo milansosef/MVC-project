@@ -24,9 +24,11 @@ const app = new Vue({
 });
 
 
+/**
+ * Function to submit the state button without a submit button
+ */
 $(function() {
     $('#toggle-event').change(function() {
-        // $('#console-event').html('Toggle: ' + $(this).prop('checked'))
         $("#form").submit()
     })
 })

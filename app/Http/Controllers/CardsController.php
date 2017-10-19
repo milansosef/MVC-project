@@ -20,7 +20,9 @@ class CardsController extends Controller
     public function index()
     {
         //TODO: Checked doesn't work for instant search bar
+        \DB::enableQueryLog();
         $cards = Card::where('state', 'like', 1)->get();
+        \DB::getQueryLog();
 
         return view ('index', compact('cards'));
     }
@@ -31,19 +33,16 @@ class CardsController extends Controller
         return view('cards.show', compact('card'));
     }
 
+    //TODO: make searchbar work with checked
     public function search(Request $request)
     {
         $request->validate(['query' => 'string']);
 
         $keyword = $request->input('query');
 
-        //TODO: make searchbar work with checked
-//        $keyword = Input::get('keyword', '');
-//        $cards = Card::SearchByKeyword($keyword)->get();
-
         $cards = Card::search($keyword)
-            ->where('state', 1)
-            ->get();
+                    ->where('state', 1)
+                    ->get();
 
         return view('index', compact('cards'));
     }
@@ -92,6 +91,7 @@ class CardsController extends Controller
         }
 
         $card->state = $newState;
+
         $card->save();
 
         return back();

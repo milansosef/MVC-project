@@ -2,9 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model as BaseModel;
-
-class Role extends BaseModel
+class Role extends Model
 {
     public function users()
     {

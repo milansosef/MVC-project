@@ -9851,14 +9851,16 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_instantsearch__["a" /* default */]);
 Vue.component('example', __webpack_require__(368));
 
 var app = new Vue({
-    el: '#app'
+  el: '#app'
 });
 
+/**
+ * Function to submit the state button without a submit button
+ */
 $(function () {
-    $('#toggle-event').change(function () {
-        // $('#console-event').html('Toggle: ' + $(this).prop('checked'))
-        $("#form").submit();
-    });
+  $('#toggle-event').change(function () {
+    $("#form").submit();
+  });
 });
 
 /***/ }),

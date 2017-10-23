@@ -41,8 +41,13 @@
                                 @endphp
 
                                 {{--State button--}}
-                                <form id="form" action="{{ route('state', ['card' => $card->id]) }}" >
-                                    <input type="checkbox" {{ $toggle }} data-toggle="toggle" id="toggle-event">
+                                <form action="{{ route('state') }}" method="POST" >
+
+                                    {{ csrf_field() }}
+
+                                    <input type="checkbox" {{ $toggle }} data-toggle="toggle" class="toggle-event">
+
+                                    <input type="hidden" name="card" value="{{ $card->id }}">
                                 </form>
 
                                 {{--Edit button--}}

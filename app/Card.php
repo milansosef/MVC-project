@@ -22,4 +22,19 @@ class card extends Model
     {
         $this->comments()->create(compact('body'));
     }
+
+    public function changeState($card)
+    {
+        if ($card->state == 1)
+        {
+            $newState = 0;
+        }
+        else {
+            $newState = 1;
+        }
+
+        $card->state = $newState;
+
+        $card->save();
+    }
 }

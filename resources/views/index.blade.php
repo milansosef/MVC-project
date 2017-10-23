@@ -11,6 +11,35 @@
                     <input type="text" class="form-control" name="query" placeholder="Search cards">
                 </div>
 
+                {{--@php--}}
+                {{--$classes = [--}}
+                    {{--'class-1' => 'Neutral',--}}
+                    {{--'class-2' => 'Druid',--}}
+                    {{--'class-3' => 'Hunter',--}}
+                    {{--'class-4' => 'Mage',--}}
+                    {{--'class-5' => 'Paladin',--}}
+                    {{--'class-6' => 'Priest',--}}
+                    {{--'class-7' => 'Rogue',--}}
+                    {{--'class-8' => 'Shaman',--}}
+                    {{--'class-9' => 'Warlock',--}}
+                    {{--'class-10' => 'Warrior',--}}
+                {{--];--}}
+                {{--@endphp--}}
+
+                {{--<fieldset>--}}
+                    {{--<legend>Class</legend>--}}
+                    {{--<div>--}}
+                        {{--<ul>--}}
+                            {{--@foreach($classes as $index => $class)--}}
+                                {{--<li>--}}
+                                    {{--<input type="checkbox" id="{{ $index }}" value="{{ $class }}">--}}
+                                    {{--<label for="{{ $index }}">{{ $class }}</label>--}}
+                                {{--</li>--}}
+                            {{--@endforeach--}}
+                        {{--</ul>--}}
+                    {{--</div>--}}
+                {{--</fieldset>--}}
+
                 <button type="submit" class="btn btn-default">Filter</button>
             </form>
         </div>

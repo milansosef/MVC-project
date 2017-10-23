@@ -9838,6 +9838,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 __webpack_require__(161);
 
+// TODO: Use this or not?
 window.Vue = __webpack_require__(184);
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_instantsearch__["a" /* default */]);
@@ -9858,8 +9859,9 @@ var app = new Vue({
  * Function to submit the state button without a submit button
  */
 $(function () {
-  $('#toggle-event').change(function () {
-    $("#form").submit();
+
+  $(".toggle-event").change(function () {
+    $(this).parents("form").submit();
   });
 });
 

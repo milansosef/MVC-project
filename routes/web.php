@@ -12,8 +12,6 @@ use Illuminate\Http\Request;
 |
 */
 
-//TODO
-
 Route::get('/', 'CardsController@index');
 
 Route::get('/cards/{card}', 'CardsController@show')->name('show');
@@ -39,8 +37,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/admin', 'AdminController@index')->name('admin');
 
-    //TODO: Page not found error
-    Route::get('/cards/create', 'CardsController@create')->name('create');
+    Route::get('/cards/create/new', 'CardsController@create')->name('create');
 
     Route::post('/cards', 'CardsController@store')->name('store');
 
@@ -50,5 +47,5 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/cards/{card}/delete', 'CardsController@delete')->name('delete');
 
-    Route::get('/cards/{card}/state', 'CardsController@state')->name('state');
+    Route::post('/cards/state', 'CardsController@state')->name('state');
 });

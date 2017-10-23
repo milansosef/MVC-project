@@ -7,6 +7,7 @@
 
 require('./bootstrap');
 
+// TODO: Use this or not?
 window.Vue = require('vue');
 import InstantSearch from 'vue-instantsearch';
 Vue.use(InstantSearch);
@@ -28,8 +29,10 @@ const app = new Vue({
  * Function to submit the state button without a submit button
  */
 $(function() {
-    $('#toggle-event').change(function() {
-        $("#form").submit()
-    })
-})
+
+        $(".toggle-event").change(function()
+        {
+            $(this).parents("form").submit();
+        });
+});
 

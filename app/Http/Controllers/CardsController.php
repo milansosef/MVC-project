@@ -19,7 +19,7 @@ class CardsController extends Controller
 
     public function index()
     {
-        //TODO: Checked doesn't work for instant search bar
+        //TODO: Use this or not?
         \DB::enableQueryLog();
         $cards = Card::where('state', 'like', 1)->get();
         \DB::getQueryLog();
@@ -28,12 +28,11 @@ class CardsController extends Controller
     }
 
     public function show(Card $card) //Card::find(wildcard) -> Card::find(wildcard)
-
     {
         return view('cards.show', compact('card'));
     }
 
-    //TODO: make searchbar work with checked
+    //TODO: Find out how algolia and scout work in this project
     public function search(Request $request)
     {
         $request->validate(['query' => 'string']);
@@ -43,6 +42,7 @@ class CardsController extends Controller
         $cards = Card::search($keyword)
                     ->where('state', 1)
                     ->get();
+//        dd($cards);
 
         return view('index', compact('cards'));
     }
@@ -80,19 +80,15 @@ class CardsController extends Controller
         return back();
     }
 
-    public function state(Card $card)
+    public function state(Request $request)
     {
-        if ($card->state == 1)
-        {
-            $newState = 0;
-        }
-        else {
-            $newState = 1;
-        }
+        $request->validate(['card' => 'required|int']);
 
-        $card->state = $newState;
+        $input = $request->input('card');
 
-        $card->save();
+        $card = Card::find($input);
+
+        $card->changeState($card);
 
         return back();
     }

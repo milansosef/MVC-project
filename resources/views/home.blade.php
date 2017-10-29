@@ -37,7 +37,7 @@
                         $totalDustNeeded = 0;
                     @endphp
 
-                    @foreach($cards as $card)
+                    @foreach($cards->cards as $card)
                         @php
                             $dustCount+= $card->craftingCost;
 
@@ -51,6 +51,7 @@
                             <a href="{{ route('show', ['card' => $card->id]) }}">
                                 <img src="{{ $card->img }}" alt="">
                             </a>
+                            {{--<p> {{ $card->name }} {{ $card->craftingCost }}</p>--}}
                             <p> {{ $card->name }} {{ $card->craftingCost }}</p>
 
                             <form method="POST" action="{{ route('removefromwishlist', ['card' => $card->id]) }}">

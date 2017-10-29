@@ -23,8 +23,26 @@ class HomeController extends Controller
 
         //TODO: Find out what Auth is/does, how is it different from a model?
         //Only the cards from the user
+
         $user = Auth::user();
-        $cards = $user->cards->where('state', 'like', 1);
+
+        //Lazy eager loading
+        $cards = $user->load(['cards' => function($query)
+        {
+            $query->where('state', 'like', 1);
+        }]);
+
+        //Eager loading
+//        $cards = Auth::user()
+//                ->with('cards')
+//                ->where('state', 'like', 1)
+//                ->get();
+
+//        $cards = Auth::user()->with(['cards' => function($query)
+//        {
+//            $query->where('state', 'like', 1);
+//
+//        }])->get();
 
         return view('home', compact(['cards', 'allCards']));
     }

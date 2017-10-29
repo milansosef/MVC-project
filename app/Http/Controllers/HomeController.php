@@ -17,6 +17,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        //All cards
         $allCards = Card::where('state', 'like', 1)->get();
 
 

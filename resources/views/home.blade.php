@@ -33,13 +33,19 @@
 
                     @php
                         $dustCount = 0;
-
-                        $totalDustNeeded =   - $dustCount;
+                        $userDust = Auth::user()->dust;
+                        $totalDustNeeded = 0;
                     @endphp
 
                     @foreach($cards as $card)
                         @php
                             $dustCount+= $card->craftingCost;
+
+                            if ($dustCount - $userDust < 1){
+                                $totalDustNeeded = 0;
+                            } else {
+                                $totalDustNeeded =  $dustCount - $userDust;
+                            }
                         @endphp
                         <div>
                             <a href="{{ route('show', ['card' => $card->id]) }}">
@@ -56,7 +62,7 @@
                     @endforeach
 
                     <p>Crafting cost: {{ $dustCount }}</p>
-                    <p>Total dust needed: {{ $dustCount - Auth::user()->dust }}</p>
+                    <p>Total dust needed: {{ $totalDustNeeded }}</p>
 
                 </div>
             </div>

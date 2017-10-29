@@ -16,7 +16,7 @@ class CommentsController extends Controller
 
     public function store(Card $card)
     {
-        $this->validate(request(), ['body' => 'required|min:2']);
+        $this->validate(request(), ['body' => 'required|min:2|string']);
 
         auth()->user()->publish(
           new Comment([

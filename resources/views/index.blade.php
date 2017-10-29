@@ -2,6 +2,8 @@
 
 @section('content')
     <div class="container">
+
+        {{--Searchbar--}}
         <div class="searchbar">
             <form method="GET" action="{{ route('search', ['query']) }}">
                 {{ csrf_field() }}
@@ -10,53 +12,20 @@
                     <input type="text" class="form-control" name="query" placeholder="Search cards">
                 </div>
 
-                {{--<fieldset>--}}
-                    {{--<legend>Class</legend>--}}
-                    {{--<div>--}}
-                        {{--<ul>--}}
-                            {{--@foreach($classes as $index => $class)--}}
-                                {{--<li>--}}
-                                    {{--<input type="checkbox" id="{{ $index }}" value="{{ $class }}">--}}
-                                    {{--<label for="{{ $index }}">{{ $class }}</label>--}}
-                                {{--</li>--}}
-                            {{--@endforeach--}}
-                        {{--</ul>--}}
-                    {{--</div>--}}
-                {{--</fieldset>--}}
-
                 <button type="submit" class="btn btn-default">Filter</button>
             </form>
         </div>
 
+        {{--Categories--}}
         <div>
             <h4>Categories</h4>
 
             @foreach($categories as $class)
                 <li>
-                    <a href="/?class={{ $class['playerClass'] }}">{{ $class['playerClass'] }}</a>
+                    <a href="{{ route('category', ['class' => $class['playerClass']] ) }}">{{ $class['playerClass'] }}</a>
                 </li>
             @endforeach
         </div>
-
-        {{--<ais-index app-id="{{ config('scout.algolia.id') }}"--}}
-                   {{--api-key="{{ env('ALGOLIA_SEARCH') }}"--}}
-                   {{--index-name="cards">--}}
-
-            {{--<ais-input placeholder="Search cards..."></ais-input>--}}
-
-            {{--<ais-results>--}}
-                {{--<template scope="{ result }">--}}
-                    {{--<div>--}}
-                        {{--<a :href="'/cards/' + result.id">--}}
-                            {{--<img :src="result.img" alt="">--}}
-                        {{--</a>--}}
-                        {{--<h1>@{{ result.name }}</h1>--}}
-                    {{--</div>--}}
-                {{--</template>--}}
-
-            {{--</ais-results>--}}
-
-        {{--</ais-index>--}}
 
         {{--All cards--}}
         <div>

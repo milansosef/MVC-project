@@ -18,6 +18,8 @@ Route::get('/cards/{card}', 'CardsController@show')->name('show');
 
 Route::get('/cards/search/{query}', 'CardsController@search')->name('search');
 
+Route::get('/cards/{class}', 'CardsController@index')->name('category');
+
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {

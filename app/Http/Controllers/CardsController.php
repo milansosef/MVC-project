@@ -10,21 +10,20 @@ use MongoDB\Driver\Query;
 
 class CardsController extends Controller
 {
-    public function __construct()
-    {
-//        $this->middleware('auth')->except(['index', 'show']);
-//
-//        $this->middleware('admin')->only(['create', 'store', 'edit', 'update', 'delete']);
-    }
-
     public function index()
     {
-        //TODO: Use this or not?
-        \DB::enableQueryLog();
-        $cards = Card::where('state', 'like', 1)->get();
-        \DB::getQueryLog();
+        if ($playerClass = request('class'))
+        {
+            $cards = Card::where('playerClass', $playerClass)
+                    ->where('state', 'like', 1)
+                    ->get();
+        } else {
+            $cards = Card::where('state', 'like', 1)->get();
+        }
 
-        return view ('index', compact('cards'));
+        $categories = Card::selectRaw('playerClass')->get();
+
+        return view ('index', compact('cards', 'categories'));
     }
 
     public function show(Card $card) //Card::find(wildcard) -> Card::find(wildcard)
@@ -32,7 +31,7 @@ class CardsController extends Controller
         return view('cards.show', compact('card'));
     }
 
-    //TODO: Find out how algolia and scout work in this project
+    //TODO: Find out how algolia and scout works in this project
     public function search(Request $request)
     {
         $request->validate(['query' => 'string']);
@@ -42,9 +41,10 @@ class CardsController extends Controller
         $cards = Card::search($keyword)
                     ->where('state', 1)
                     ->get();
-//        dd($cards);
 
-        return view('index', compact('cards'));
+        $categories = Card::selectRaw('playerClass')->get();
+
+        return view('index', compact('cards', 'categories'));
     }
 
     public function create()

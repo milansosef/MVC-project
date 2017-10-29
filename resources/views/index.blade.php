@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="container">
-        {{--TODO: Make searchbar work--}}
         <div class="searchbar">
             <form method="GET" action="{{ route('search', ['query']) }}">
                 {{ csrf_field() }}
@@ -10,21 +9,6 @@
                 <div class="form-group">
                     <input type="text" class="form-control" name="query" placeholder="Search cards">
                 </div>
-
-                {{--@php--}}
-                {{--$classes = [--}}
-                    {{--'class-1' => 'Neutral',--}}
-                    {{--'class-2' => 'Druid',--}}
-                    {{--'class-3' => 'Hunter',--}}
-                    {{--'class-4' => 'Mage',--}}
-                    {{--'class-5' => 'Paladin',--}}
-                    {{--'class-6' => 'Priest',--}}
-                    {{--'class-7' => 'Rogue',--}}
-                    {{--'class-8' => 'Shaman',--}}
-                    {{--'class-9' => 'Warlock',--}}
-                    {{--'class-10' => 'Warrior',--}}
-                {{--];--}}
-                {{--@endphp--}}
 
                 {{--<fieldset>--}}
                     {{--<legend>Class</legend>--}}
@@ -42,6 +26,16 @@
 
                 <button type="submit" class="btn btn-default">Filter</button>
             </form>
+        </div>
+
+        <div>
+            <h4>Categories</h4>
+
+            @foreach($categories as $class)
+                <li>
+                    <a href="/?class={{ $class['playerClass'] }}">{{ $class['playerClass'] }}</a>
+                </li>
+            @endforeach
         </div>
 
         {{--<ais-index app-id="{{ config('scout.algolia.id') }}"--}}

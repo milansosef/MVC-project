@@ -33,6 +33,8 @@
 
                     @php
                         $dustCount = 0;
+
+                        $totalDustNeeded =   - $dustCount;
                     @endphp
 
                     @foreach($cards as $card)
@@ -54,6 +56,7 @@
                     @endforeach
 
                     <p>Crafting cost: {{ $dustCount }}</p>
+                    <p>Total dust needed: {{ $dustCount - Auth::user()->dust }}</p>
 
                 </div>
             </div>

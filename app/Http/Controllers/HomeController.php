@@ -11,16 +11,6 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-//        $this->middleware('auth');
-    }
-
-    /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
@@ -34,8 +24,6 @@ class HomeController extends Controller
         //Only the cards from the user
         $user = Auth::user();
         $cards = $user->cards->where('state', 'like', 1);
-
-//        dd($Cards);
 
         return view('home', compact(['cards', 'allCards']));
     }
